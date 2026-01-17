@@ -4,9 +4,9 @@
 
 ## Getting started
 
-Author: Vedanth Yellai (vedanthshiv@vt.edu)
+Author: Vedanth Yellai (vsyellai@gmail.com) or (vedanthshiv@vt.edu)
 
-I used the capabilities of AI along with my design and creativity to fully write the app without the help of any other developer. I created the basic functions of editing, saving, resetting, and clearing the history of the list without any assistance from anyone else besides AI.
+I used the capabilities of AI along with my design and creativity to fully write the app without the help of any other developer. I created the basic functions of editing, saving, resetting, and clearing the history of the list with the help of AI of course.
 
 
 This is a grocery list app called groceria. It is an application that allows user to create a grocery list based on their specifications and save that list in a list history for future purposes. The app was designed to help people with extremely busy daily lives to plan out their grocery trips by listing what they need so that they do not forget.
