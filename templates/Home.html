@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groceria - Your Grocery List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
+
+
+        h1 {
+            font-size: 3.5rem;
+            color: #56ab2f;
+            margin-bottom: 40px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #386325;
+            margin-bottom: 40px; 
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .view-list-btn {
+            background: #56ab2f;
+            color: white;
+        }
+
+        .view-list-btn:hover {
+            background: #3d7a22;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(86, 171, 47, 0.4);
+        }
+
+        .edit-list-btn {
+            background: #ffd93d;
+            color: #333;
+        }
+
+        .edit-list-btn:hover {
+            background: #ffc107;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 217, 61, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Groceria</h1>
+        <h2>By Vedanth Yellai (vedanthshiv@vt.edu)</h2>
+        <div class="button-group">
+            <a href="/view-lists" style="text-decoration: none;"><button class="view-list-btn">View Lists</button></a>
+            <a href="/edit" style="text-decoration: none;"><button class="edit-list-btn">Edit List</button></a>
+        </div>
+    </div>
+</body>
+</html>

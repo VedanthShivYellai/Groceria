@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groceria - Edit List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-bar {
+            background: #56ab2f;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        h2 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .add-btn-top {
+            background: #ffd93d;
+            border: none;
+            color: #333;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .add-btn-top:hover {
+            background: #ffc107;
+            transform: scale(1.1);
+        }
+
+        .list-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .list-item:hover {
+            background: #e8e8e8;
+            transform: translateX(5px);
+        }
+
+        .item-text {
+            font-size: 1.1rem;
+            color: #333;
+            flex: 1;
+            font-weight: bold;
+        }
+
+        .remove-btn {
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background: #ff5252;
+            transform: scale(1.1);
+        }
+
+        .bottom-bar {
+            background: #56ab2f;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .add-item-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .reset-list-btn {
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .reset-list-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+
+        .add-btn-bottom {
+            background: #ffd93d;
+            border: none;
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .add-btn-bottom:hover {
+            background: #ffc107;
+            transform: scale(1.05);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #999;
+            font-size: 1.1rem;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 0;
+                min-height: 100vh;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <a href="/" style="text-decoration: none;"><button class="back-btn">←</button></a>
+            <h2>Edit List</h2>
+            <div style="width: 40px;"></div>
+        </div>
+
+        <div class="list-container">
+            <div class="empty-state">Your list is empty. Add items below!</div>
+        </div>
+
+        <div class="bottom-bar">
+            <input type="text" class="add-item-input" placeholder="Add new item...">
+            <button class="add-btn-bottom">+</button>
+            <button class="reset-list-btn">Reset List</button>
+        </div>
+    </div>
+
+<script>
+    let groceryList = [];
+
+    // Load list from localStorage on page load (same idea as ViewLists.html)
+    function loadList() {
+        try {
+            const raw = localStorage.getItem('grocery-list');
+            if (raw) {
+                groceryList = JSON.parse(raw);
+            } else {
+                groceryList = [];
+            }
+        } catch (error) {
+            console.log('No existing list found, starting fresh', error);
+            groceryList = [];
+        }
+        renderList();
+    }
+
+    // Save list to localStorage (same storage key as ViewLists.html)
+    function saveList() {
+        try {
+            localStorage.setItem('grocery-list', JSON.stringify(groceryList));
+        } catch (error) {
+            console.error('Error saving list:', error);
+        }
+    }
+
+    // Capitalize every letter
+    function capitalizeAll(text) {
+        return text.toUpperCase();
+    }
+
+    // Render the list
+    function renderList() {
+        const container = document.querySelector('.list-container');
+        
+        if (groceryList.length === 0) {
+            container.innerHTML = '<div class="empty-state">Your list is empty. Add items below!</div>';
+            return;
+        }
+
+        container.innerHTML = groceryList.map((item, index) => `
+            <div class="list-item">
+                <span class="item-text">${item}</span>
+                <button class="remove-btn" onclick="removeItem(${index})">−</button>
+            </div>
+        `).join('');
+    }
+
+    // Add item
+    function addItem() {
+        const input = document.querySelector('.add-item-input');
+        const text = input.value.trim();
+        
+        if (text) {
+            const capitalizedText = capitalizeAll(text);
+            groceryList.push(capitalizedText);
+            saveList();      // persist after change
+            renderList();
+            input.value = '';
+        }
+    }
+
+    // Remove item
+    function removeItem(index) {
+        groceryList.splice(index, 1);
+        saveList();          // persist after change
+        renderList();
+    }
+
+    // Reset list (keeps your existing backend behavior, but also syncs localStorage)
+    async function resetList() {
+        if (groceryList.length === 0) {
+            alert('List is already empty!');
+            return;
+        }
+
+        if (confirm('Are you sure you want to save and clear the entire list?')) {
+            try {
+                const response = await fetch('/api/save-list', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        items: groceryList
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    alert(`List saved as List #${data.list_number}!`);
+                    groceryList = [];
+                    saveList();   // also clear localStorage copy
+                    renderList();
+                } else {
+                    alert('Error saving list: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error saving list:', error);
+                alert('Error saving list. Make sure the server is running.');
+            }
+        }
+    }
+
+    // Event listeners
+    document.querySelector('.add-btn-bottom').addEventListener('click', addItem);
+    document.querySelector('.add-item-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            addItem();
+        }
+    });
+    document.querySelector('.reset-list-btn').addEventListener('click', resetList);
+
+    // Load list on page load
+    loadList();
+</script>
+</body>
+</html>
