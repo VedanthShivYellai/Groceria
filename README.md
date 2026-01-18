@@ -18,5 +18,3 @@ No installation or set up necessary, It utilizes local storage so for any device
 The program has already been set up fully and you may use when ever you want
 
 Libraries used: Flask, SQLite3
-
-LINK TO SITE: http://groceria-app-vsy.gfd8gqggeyadaadp.westus2.azurecontainer.io:5001/
